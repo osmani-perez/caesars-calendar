@@ -1,276 +1,295 @@
 <head>
-    <link rel="stylesheet" href="styles.css" />
-    <script
-        type="text/javascript"
-        src="http://code.jquery.com/jquery-latest.min.js"
-    ></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script
+    type="text/javascript"
+    src="http://code.jquery.com/jquery-latest.min.js"
+  ></script>
+  <title>Caesar's Calendar</title>
 </head>
 <body>
+  <header>
+    <div id="instructions" class="header-elements">
+      <h1>Goal</h1>
+      <span>
+        Place all blocks onto the calendar in the correct arrangement so that
+        only today's month, date, and day of the week is visible.
+      </span>
+    </div>
+    <div id="controls" class="header-elements">
+      <h1>Controls</h1>
+      <span>R: Rotate Block</span>
+      <br />
+      <span>F: Flip Block</span>
+    </div>
+  </header>
+  <br />
+  <div id="game-area">
     <div id="board">
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+          grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+          width: 100%;
+          height: 100%;
+          background-color: #997950;
+          border: solid 1px black;
+        "
+      >
+        <div class="tile-space">JAN</div>
+        <div class="tile-space">FEB</div>
+        <div class="tile-space">MAR</div>
+        <div class="tile-space">APR</div>
+        <div class="tile-space">MAY</div>
+        <div class="tile-space">JUN</div>
         <div
-            style="
-                display: grid;
-                grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
-                grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-                width: 100%;
-                height: 100%;
-                background-color: #997950;
-                border: solid 1px black;
-            "
+          style="
+            width: 80px;
+            height: 160px;
+            background-image: url(wood-texture.jpg);
+          "
+        ></div>
+        <div class="tile-space">JUL</div>
+        <div class="tile-space">AUG</div>
+        <div class="tile-space">SEP</div>
+        <div class="tile-space">OCT</div>
+        <div class="tile-space">NOV</div>
+        <div class="tile-space">DEC</div>
+        <div class="tile-space"></div>
+        <div class="tile-space">1</div>
+        <div class="tile-space">2</div>
+        <div class="tile-space">3</div>
+        <div class="tile-space">4</div>
+        <div class="tile-space">5</div>
+        <div class="tile-space">6</div>
+        <div class="tile-space">7</div>
+        <div class="tile-space">8</div>
+        <div class="tile-space">9</div>
+        <div class="tile-space">10</div>
+        <div class="tile-space">11</div>
+        <div class="tile-space">12</div>
+        <div class="tile-space">13</div>
+        <div class="tile-space">14</div>
+        <div class="tile-space">15</div>
+        <div class="tile-space">16</div>
+        <div class="tile-space">17</div>
+        <div class="tile-space">18</div>
+        <div class="tile-space">19</div>
+        <div class="tile-space">20</div>
+        <div class="tile-space">21</div>
+        <div class="tile-space">22</div>
+        <div class="tile-space">23</div>
+        <div class="tile-space">24</div>
+        <div class="tile-space">25</div>
+        <div class="tile-space">26</div>
+        <div class="tile-space">27</div>
+        <div class="tile-space">28</div>
+        <div class="tile-space">29</div>
+        <div class="tile-space">30</div>
+        <div class="tile-space">31</div>
+        <div class="tile-space">SUN</div>
+        <div class="tile-space">MON</div>
+        <div class="tile-space">TUE</div>
+        <div class="tile-space">WED</div>
+        <div
+          style="
+            width: 320px;
+            background-image: url(wood-texture.jpg);
+            text-align: center;
+            line-height: 80px;
+            font-size: x-large;
+          "
         >
-            <div class="tile-space">JAN</div>
-            <div class="tile-space">FEB</div>
-            <div class="tile-space">MAR</div>
-            <div class="tile-space">APR</div>
-            <div class="tile-space">MAY</div>
-            <div class="tile-space">JUN</div>
-            <div
-                style="
-                    width: 80px;
-                    height: 160px;
-                    background-image: url(wood-texture.jpg);
-                "
-            ></div>
-            <div class="tile-space">JUL</div>
-            <div class="tile-space">AUG</div>
-            <div class="tile-space">SEP</div>
-            <div class="tile-space">OCT</div>
-            <div class="tile-space">NOV</div>
-            <div class="tile-space">DEC</div>
-            <div class="tile-space"></div>
-            <div class="tile-space">1</div>
-            <div class="tile-space">2</div>
-            <div class="tile-space">3</div>
-            <div class="tile-space">4</div>
-            <div class="tile-space">5</div>
-            <div class="tile-space">6</div>
-            <div class="tile-space">7</div>
-            <div class="tile-space">8</div>
-            <div class="tile-space">9</div>
-            <div class="tile-space">10</div>
-            <div class="tile-space">11</div>
-            <div class="tile-space">12</div>
-            <div class="tile-space">13</div>
-            <div class="tile-space">14</div>
-            <div class="tile-space">15</div>
-            <div class="tile-space">16</div>
-            <div class="tile-space">17</div>
-            <div class="tile-space">18</div>
-            <div class="tile-space">19</div>
-            <div class="tile-space">20</div>
-            <div class="tile-space">21</div>
-            <div class="tile-space">22</div>
-            <div class="tile-space">23</div>
-            <div class="tile-space">24</div>
-            <div class="tile-space">25</div>
-            <div class="tile-space">26</div>
-            <div class="tile-space">27</div>
-            <div class="tile-space">28</div>
-            <div class="tile-space">29</div>
-            <div class="tile-space">30</div>
-            <div class="tile-space">31</div>
-            <div class="tile-space">SUN</div>
-            <div class="tile-space">MON</div>
-            <div class="tile-space">TUE</div>
-            <div class="tile-space">WED</div>
-            <div
-                style="
-                    width: 320px;
-                    background-image: url(wood-texture.jpg);
-                    text-align: center;
-                    line-height: 80px;
-                    font-size: x-large;
-                "
-            >
-                CAESAR'S CALENDAR
-            </div>
-            <div class="tile-space"></div>
-            <div class="tile-space"></div>
-            <div class="tile-space"></div>
-            <div class="tile-space">THU</div>
-            <div class="tile-space">FRI</div>
-            <div class="tile-space">SAT</div>
+          CAESAR'S CALENDAR
         </div>
+        <div class="tile-space"></div>
+        <div class="tile-space"></div>
+        <div class="tile-space"></div>
+        <div class="tile-space">THU</div>
+        <div class="tile-space">FRI</div>
+        <div class="tile-space">SAT</div>
+      </div>
     </div>
     <div id="tile-area">
-        <div
-            id="tile-straight"
-            class="tile"
-            initialTransform="0px, 0px"
-            style="width: 320px; height: 80px"
-        ></div>
-        <div
-            id="tile-l-2"
-            class="tile"
-            initialTransform="0px, 90px"
-            style="
-                transform: translate(0px, 90px);
-                width: 320px;
-                height: 160px;
-                clip-path: polygon(
-                    0% 0%,
-                    0% 100%,
-                    100% 100%,
-                    100% 50%,
-                    25% 50%,
-                    25% 0%
-                );
-            "
-        ></div>
-        <div
-            id="tile-l-3"
-            class="tile"
-            initialTransform="0px, 270px"
-            style="
-                transform: translate(0px, 270px);
-                width: 240px;
-                height: 160px;
-                clip-path: polygon(
-                    0% 0%,
-                    0% 100%,
-                    100% 100%,
-                    100% 50%,
-                    33.3% 50%,
-                    33.3% 0%
-                );
-            "
-        ></div>
-        <div
-            id="tile-l-4"
-            class="tile"
-            initialTransform="330px, 10px"
-            style="
-                transform: translate(330px, 10px);
-                width: 240px;
-                height: 240px;
-                clip-path: polygon(
-                    0% 0%,
-                    0% 100%,
-                    100% 100%,
-                    100% 66.6%,
-                    33.3% 66.6%,
-                    33.3% 0%
-                );
-            "
-        ></div>
-        <div
-            id="tile-zig-1"
-            class="tile"
-            initialTransform="430px, 0px"
-            style="
-                transform: translate(430px, 0px);
-                width: 240px;
-                height: 160px;
-                clip-path: polygon(
-                    0% 50%,
-                    0% 100%,
-                    66.6% 100%,
-                    66.6% 50%,
-                    100% 50%,
-                    100% 0%,
-                    33.3% 0%,
-                    33.3% 50%
-                );
-            "
-        ></div>
-        <div
-            id="tile-zig-2"
-            class="tile"
-            initialTransform="340px, 270px"
-            style="
-                transform: translate(340px, 270px);
-                width: 320px;
-                height: 160px;
-                clip-path: polygon(
-                    0% 50%,
-                    0% 100%,
-                    50% 100%,
-                    50% 50%,
-                    100% 50%,
-                    100% 0%,
-                    25% 0%,
-                    25% 50%
-                );
-            "
-        ></div>
-        <div
-            id="tile-zig-3"
-            class="tile"
-            initialTransform="0px, 440px"
-            style="
-                transform: translate(0px, 440px);
-                width: 240px;
-                height: 240px;
-                clip-path: polygon(
-                    0% 66.6%,
-                    0% 100%,
-                    66.6% 100%,
-                    66.6% 33.3%,
-                    100% 33.3%,
-                    100% 0%,
-                    33.3% 0%,
-                    33.3% 66.6%
-                );
-            "
-        ></div>
-        <div
-            id="tile-t"
-            class="tile"
-            initialTransform="170px, 260px"
-            style="
-                transform: translate(170px, 260px);
-                width: 240px;
-                height: 240px;
-                clip-path: polygon(
-                    0% 0%,
-                    0% 33.3%,
-                    33.3% 33.3%,
-                    33.3% 100%,
-                    66.6% 100%,
-                    66.6% 33.3%,
-                    100% 33.3%,
-                    100% 0%
-                );
-            "
-        ></div>
-        <div
-            id="tile-u"
-            class="tile"
-            initialTransform="210px, 540px"
-            style="
-                transform: translate(210px, 540px);
-                width: 240px;
-                height: 160px;
-                clip-path: polygon(
-                    0% 0%,
-                    0% 100%,
-                    100% 100%,
-                    100% 0%,
-                    66.6% 0%,
-                    66.6% 50%,
-                    33.3% 50%,
-                    33.3% 0%
-                );
-            "
-        ></div>
-        <div
-            id="tile-hippo"
-            class="tile"
-            initialTransform="420px, 440px"
-            style="
-                transform: translate(420px, 440px);
-                width: 240px;
-                height: 160px;
-                clip-path: polygon(
-                    0% 0%,
-                    0% 50%,
-                    33.3% 50%,
-                    33.3% 100%,
-                    100% 100%,
-                    100% 0%
-                );
-            "
-        ></div>
+      <div
+        id="tile-straight"
+        class="tile"
+        initialTranslation="0px, 0px"
+        style="width: 320px; height: 80px"
+      ></div>
+      <div
+        id="tile-l-2"
+        class="tile"
+        initialTranslation="0px, 90px"
+        style="
+          transform: translate(0px, 90px);
+          width: 320px;
+          height: 160px;
+          clip-path: polygon(
+            0% 0%,
+            0% 100%,
+            100% 100%,
+            100% 50%,
+            25% 50%,
+            25% 0%
+          );
+        "
+      ></div>
+      <div
+        id="tile-l-3"
+        class="tile"
+        initialTranslation="0px, 270px"
+        style="
+          transform: translate(0px, 270px);
+          width: 240px;
+          height: 160px;
+          clip-path: polygon(
+            0% 0%,
+            0% 100%,
+            100% 100%,
+            100% 50%,
+            33.3% 50%,
+            33.3% 0%
+          );
+        "
+      ></div>
+      <div
+        id="tile-l-4"
+        class="tile"
+        initialTranslation="330px, 10px"
+        style="
+          transform: translate(330px, 10px);
+          width: 240px;
+          height: 240px;
+          clip-path: polygon(
+            0% 0%,
+            0% 100%,
+            100% 100%,
+            100% 66.6%,
+            33.3% 66.6%,
+            33.3% 0%
+          );
+        "
+      ></div>
+      <div
+        id="tile-zig-1"
+        class="tile"
+        initialTranslation="430px, 0px"
+        style="
+          transform: translate(430px, 0px);
+          width: 240px;
+          height: 160px;
+          clip-path: polygon(
+            0% 50%,
+            0% 100%,
+            66.6% 100%,
+            66.6% 50%,
+            100% 50%,
+            100% 0%,
+            33.3% 0%,
+            33.3% 50%
+          );
+        "
+      ></div>
+      <div
+        id="tile-zig-2"
+        class="tile"
+        initialTranslation="340px, 270px"
+        style="
+          transform: translate(340px, 270px);
+          width: 320px;
+          height: 160px;
+          clip-path: polygon(
+            0% 50%,
+            0% 100%,
+            50% 100%,
+            50% 50%,
+            100% 50%,
+            100% 0%,
+            25% 0%,
+            25% 50%
+          );
+        "
+      ></div>
+      <div
+        id="tile-zig-3"
+        class="tile"
+        initialTranslation="0px, 440px"
+        style="
+          transform: translate(0px, 440px);
+          width: 240px;
+          height: 240px;
+          clip-path: polygon(
+            0% 66.6%,
+            0% 100%,
+            66.6% 100%,
+            66.6% 33.3%,
+            100% 33.3%,
+            100% 0%,
+            33.3% 0%,
+            33.3% 66.6%
+          );
+        "
+      ></div>
+      <div
+        id="tile-t"
+        class="tile"
+        initialTranslation="170px, 260px"
+        style="
+          transform: translate(170px, 260px);
+          width: 240px;
+          height: 240px;
+          clip-path: polygon(
+            0% 0%,
+            0% 33.3%,
+            33.3% 33.3%,
+            33.3% 100%,
+            66.6% 100%,
+            66.6% 33.3%,
+            100% 33.3%,
+            100% 0%
+          );
+        "
+      ></div>
+      <div
+        id="tile-u"
+        class="tile"
+        initialTranslation="210px, 540px"
+        style="
+          transform: translate(210px, 540px);
+          width: 240px;
+          height: 160px;
+          clip-path: polygon(
+            0% 0%,
+            0% 100%,
+            100% 100%,
+            100% 0%,
+            66.6% 0%,
+            66.6% 50%,
+            33.3% 50%,
+            33.3% 0%
+          );
+        "
+      ></div>
+      <div
+        id="tile-hippo"
+        class="tile"
+        initialTranslation="420px, 440px"
+        style="
+          transform: translate(420px, 440px);
+          width: 240px;
+          height: 160px;
+          clip-path: polygon(
+            0% 0%,
+            0% 50%,
+            33.3% 50%,
+            33.3% 100%,
+            100% 100%,
+            100% 0%
+          );
+        "
+      ></div>
     </div>
+  </div>
 </body>
 <script src="script.js"></script>
