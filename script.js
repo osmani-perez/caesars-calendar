@@ -6,58 +6,20 @@ let pos1 = 0,
   pos4 = 0;
 let movingDiv = "";
 
-const gridCoordinates = [
-  { x: 508, y: 75 },
-  { x: 588, y: 75 },
-  { x: 668, y: 75 },
-  { x: 748, y: 75 },
-  { x: 828, y: 75 },
-  { x: 908, y: 75 },
-  { x: 508, y: 155 },
-  { x: 588, y: 155 },
-  { x: 668, y: 155 },
-  { x: 748, y: 155 },
-  { x: 828, y: 155 },
-  { x: 908, y: 155 },
-  { x: 508, y: 235 },
-  { x: 588, y: 235 },
-  { x: 668, y: 235 },
-  { x: 748, y: 235 },
-  { x: 828, y: 235 },
-  { x: 908, y: 235 },
-  { x: 988, y: 235 },
-  { x: 508, y: 315 },
-  { x: 588, y: 315 },
-  { x: 668, y: 315 },
-  { x: 748, y: 315 },
-  { x: 828, y: 315 },
-  { x: 908, y: 315 },
-  { x: 988, y: 315 },
-  { x: 508, y: 395 },
-  { x: 588, y: 395 },
-  { x: 668, y: 395 },
-  { x: 748, y: 395 },
-  { x: 828, y: 395 },
-  { x: 908, y: 395 },
-  { x: 988, y: 395 },
-  { x: 508, y: 475 },
-  { x: 588, y: 475 },
-  { x: 668, y: 475 },
-  { x: 748, y: 475 },
-  { x: 828, y: 475 },
-  { x: 908, y: 475 },
-  { x: 988, y: 475 },
-  { x: 508, y: 555 },
-  { x: 588, y: 555 },
-  { x: 668, y: 555 },
-  { x: 748, y: 555 },
-  { x: 828, y: 555 },
-  { x: 908, y: 555 },
-  { x: 988, y: 555 },
-  { x: 828, y: 635 },
-  { x: 908, y: 635 },
-  { x: 988, y: 635 },
-];
+function generateGridCoordinates() {
+  const gridCoordinates = [];
+  const tileSpaces = document.getElementsByClassName("tile-space");
+
+  for (let tileSpace of tileSpaces) {
+    let tileSpaceRect = tileSpace.getBoundingClientRect();
+    gridCoordinates.push({
+      x: tileSpaceRect.x + window.scrollX,
+      y: tileSpaceRect.y + window.scrollY,
+    });
+  }
+
+  return gridCoordinates;
+}
 
 function dragMouseDown(e) {
   e = e || window.event;
@@ -106,6 +68,7 @@ function closeDragElement() {
   let yTranslation = initialTranslation.split(", ")[1];
   xTranslation = parseInt(xTranslation.substring(0, xTranslation.length - 2));
   yTranslation = parseInt(yTranslation.substring(0, yTranslation.length - 2));
+  const gridCoordinates = generateGridCoordinates();
   gridCoordinates.some((coordinate) => {
     if (
       nearCoordinate(
