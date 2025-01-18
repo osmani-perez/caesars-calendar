@@ -1,0 +1,41 @@
+body {
+    margin: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    height: 85vh;
+    flex-direction: row;
+    background-color: grey;
+    font-family: "Courier New";
+    font-weight: bold;
+}
+
+.tile {
+    position: absolute;
+    z-index: 9;
+    box-sizing: border-box;
+    cursor: grab;
+    background-image: url("wood-texture.jpg");
+}
+
+#board {
+    width: 560px;
+    height: 640px;
+    padding: 20px;
+    border: 4px solid black;
+    border-radius: 30px;
+    background-image: url("wood-texture.jpg");
+    z-index: 5;
+}
+
+.tile-space {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 80px;
+    font-size: xx-large;
+}
+
+#tile-area {
+    width: 550px;
+}
