@@ -1,4 +1,5 @@
 $(document).on("click", ".tile", clickMouse);
+$(document).on("click", "#reset-button", resetTiles);
 
 let pos1 = 0,
   pos2 = 0,
@@ -58,7 +59,6 @@ function closeDragElement() {
   document.onclick = null;
   document.onkeydown = null;
   elem.style.cursor = "grab";
-  elem.style.zIndex = 9;
 
   const initialTranslation = elem.getAttribute("initialTranslation");
 
@@ -71,10 +71,15 @@ function closeDragElement() {
   const boundingRect = elem.getBoundingClientRect();
   gridCoordinates.some((coordinate) => {
     if (
-      nearCoordinate(coordinate.x, coordinate.y, boundingRect.y, boundingRect.x)
+      isNearCoordinate(
+        coordinate.x,
+        coordinate.y,
+        boundingRect.y + window.scrollY,
+        boundingRect.x + window.scrollX
+      )
     ) {
-      const topDiff = boundingRect.y - coordinate.y;
-      const leftDiff = boundingRect.x - coordinate.x;
+      const topDiff = boundingRect.y - coordinate.y + window.scrollY;
+      const leftDiff = boundingRect.x - coordinate.x + window.scrollX;
       const currTop = parseInt(
         elem.style.top.substr(0, elem.style.top.length - 2)
       );
@@ -100,18 +105,29 @@ function clickMouse(e) {
   dragMouseDown(e);
   e.target.style.cursor = "grabbing";
   e.target.style.zIndex = 10;
+  moveAllOtherTilesBehind(e.target);
+}
+
+function moveAllOtherTilesBehind(elem) {
+  const tiles = document.getElementsByClassName("tile");
+
+  for (let tile of tiles) {
+    if (tile !== elem) {
+      tile.style.zIndex = 9;
+    }
+  }
 }
 
 function keyPress(e) {
   elem = document.getElementById(movingDiv);
   if (e.keyCode === 82) {
-    // R key pressed, rotate block
+    // R key pressed, rotate tile
     elem.setAttribute(
       "rotateDeg",
       (parseInt(elem.getAttribute("rotateDeg")) + 90) % 360
     );
   } else if (e.keyCode === 70) {
-    // F key pressed, flip block
+    // F key pressed, flip tile
     elem.setAttribute("scale", parseInt(elem.getAttribute("scale")) * -1);
   }
 
@@ -136,7 +152,7 @@ function buildTransformString(
   return `translate(${initialTranslation}) rotate(${rotateDeg}deg) scale${scaleDirection}(${scale})`;
 }
 
-function nearCoordinate(x, y, top, left) {
+function isNearCoordinate(x, y, top, left) {
   let isTopNearBoundingUpper = top < y + 40;
   let isTopNearBoundingLower = top > y - 40;
   let isLeftNearBoundingUpper = left < x + 40;
@@ -148,4 +164,15 @@ function nearCoordinate(x, y, top, left) {
     isLeftNearBoundingUpper &&
     isLeftNearBoundingLower
   );
+}
+
+function resetTiles() {
+  const tiles = document.getElementsByClassName("tile");
+
+  for (let tile of tiles) {
+    let initialTranslation = tile.getAttribute("initialTranslation");
+    tile.style.transform = `translate(${initialTranslation})`;
+    tile.style.removeProperty("top");
+    tile.style.removeProperty("left");
+  }
 }
