@@ -71,10 +71,15 @@ function closeDragElement() {
   const boundingRect = elem.getBoundingClientRect();
   gridCoordinates.some((coordinate) => {
     if (
-      nearCoordinate(coordinate.x, coordinate.y, boundingRect.y, boundingRect.x)
+      nearCoordinate(
+        coordinate.x,
+        coordinate.y,
+        boundingRect.y + window.scrollY,
+        boundingRect.x + window.scrollX
+      )
     ) {
-      const topDiff = boundingRect.y - coordinate.y;
-      const leftDiff = boundingRect.x - coordinate.x;
+      const topDiff = boundingRect.y - coordinate.y + window.scrollY;
+      const leftDiff = boundingRect.x - coordinate.x + window.scrollX;
       const currTop = parseInt(
         elem.style.top.substr(0, elem.style.top.length - 2)
       );
