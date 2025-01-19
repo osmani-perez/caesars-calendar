@@ -66,3 +66,9 @@ header {
 #tile-area {
   width: 550px;
 }
+
+.glow {
+  color: #fff;
+  text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff,
+    0 0 60px #fff, 0 0 70px #fff, 0 0 80px #fff;
+}
