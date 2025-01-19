@@ -1,11 +1,5 @@
 $(document).on("click", ".tile", clickMouse);
 
-function printMousePos(event) {
-  console.log("clientX: " + event.clientX + " - clientY: " + event.clientY);
-}
-
-document.addEventListener("click", printMousePos);
-
 let pos1 = 0,
   pos2 = 0,
   pos3 = 0,
