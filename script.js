@@ -59,7 +59,6 @@ function closeDragElement() {
   document.onclick = null;
   document.onkeydown = null;
   elem.style.cursor = "grab";
-  elem.style.zIndex = 9;
 
   const initialTranslation = elem.getAttribute("initialTranslation");
 
@@ -72,7 +71,7 @@ function closeDragElement() {
   const boundingRect = elem.getBoundingClientRect();
   gridCoordinates.some((coordinate) => {
     if (
-      nearCoordinate(
+      isNearCoordinate(
         coordinate.x,
         coordinate.y,
         boundingRect.y + window.scrollY,
@@ -106,6 +105,17 @@ function clickMouse(e) {
   dragMouseDown(e);
   e.target.style.cursor = "grabbing";
   e.target.style.zIndex = 10;
+  moveAllOtherTilesBehind(e.target);
+}
+
+function moveAllOtherTilesBehind(elem) {
+  const tiles = document.getElementsByClassName("tile");
+
+  for (let tile of tiles) {
+    if (tile !== elem) {
+      tile.style.zIndex = 9;
+    }
+  }
 }
 
 function keyPress(e) {
@@ -142,7 +152,7 @@ function buildTransformString(
   return `translate(${initialTranslation}) rotate(${rotateDeg}deg) scale${scaleDirection}(${scale})`;
 }
 
-function nearCoordinate(x, y, top, left) {
+function isNearCoordinate(x, y, top, left) {
   let isTopNearBoundingUpper = top < y + 40;
   let isTopNearBoundingLower = top > y - 40;
   let isLeftNearBoundingUpper = left < x + 40;
