@@ -1,5 +1,11 @@
 $(document).on("click", ".tile", clickMouse);
 
+function printMousePos(event) {
+  console.log("clientX: " + event.clientX + " - clientY: " + event.clientY);
+}
+
+document.addEventListener("click", printMousePos);
+
 let pos1 = 0,
   pos2 = 0,
   pos3 = 0,
@@ -49,7 +55,6 @@ function elementDrag(e) {
   let left = elem.offsetLeft - pos1;
   elem.style.top = top + "px";
   elem.style.left = left + "px";
-  console.log(top, left);
 }
 
 function closeDragElement() {
@@ -61,27 +66,29 @@ function closeDragElement() {
   elem.style.cursor = "grab";
   elem.style.zIndex = 9;
 
-  let top = elem.offsetTop - pos2;
-  let left = elem.offsetLeft - pos1;
   const initialTranslation = elem.getAttribute("initialTranslation");
+
   let xTranslation = initialTranslation.split(", ")[0];
   let yTranslation = initialTranslation.split(", ")[1];
   xTranslation = parseInt(xTranslation.substring(0, xTranslation.length - 2));
   yTranslation = parseInt(yTranslation.substring(0, yTranslation.length - 2));
+
   const gridCoordinates = generateGridCoordinates();
+  const boundingRect = elem.getBoundingClientRect();
   gridCoordinates.some((coordinate) => {
     if (
-      nearCoordinate(
-        coordinate.x,
-        coordinate.y,
-        top + yTranslation,
-        left + xTranslation
-      )
+      nearCoordinate(coordinate.x, coordinate.y, boundingRect.y, boundingRect.x)
     ) {
-      top = coordinate.y - yTranslation;
-      left = coordinate.x - xTranslation;
-      elem.style.top = top + "px";
-      elem.style.left = left + "px";
+      const topDiff = boundingRect.y - coordinate.y;
+      const leftDiff = boundingRect.x - coordinate.x;
+      const currTop = parseInt(
+        elem.style.top.substr(0, elem.style.top.length - 2)
+      );
+      const currLeft = parseInt(
+        elem.style.left.substr(0, elem.style.left.length - 2)
+      );
+      elem.style.top = `${currTop - topDiff}px`;
+      elem.style.left = `${currLeft - leftDiff}px`;
       return true;
     }
   });
