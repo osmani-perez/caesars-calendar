@@ -160,6 +160,8 @@ function resetTiles() {
   const tiles = document.getElementsByClassName("tile");
 
   for (let tile of tiles) {
+    let initialTranslation = tile.getAttribute("initialTranslation");
+    tile.style.transform = `translate(${initialTranslation})`;
     tile.style.removeProperty("top");
     tile.style.removeProperty("left");
   }
