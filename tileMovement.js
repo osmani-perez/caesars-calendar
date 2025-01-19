@@ -1,10 +1,11 @@
 $(document).on("click", ".tile", handleTileClick);
 
-let pos1 = 0,
-  pos2 = 0,
-  pos3 = 0,
-  pos4 = 0;
+let xEnd = 0;
+let yEnd = 0;
+let xStart = 0;
+let yStart = 0;
 let draggingTileId = "";
+
 const R_KEY_CODE = 82;
 const F_KEY_CODE = 70;
 
@@ -27,11 +28,11 @@ function pickUpTile(e) {
   e = e || window.event;
   e.preventDefault();
   // get the mouse cursor position at startup:
-  pos3 = e.clientX;
-  pos4 = e.clientY;
+  xStart = e.clientX;
+  yStart = e.clientY;
   // call a function whenever the cursor moves:
   document.onmousemove = dragTile;
-  document.onkeydown = keyPress;
+  document.onkeydown = handleKeyPress;
   document.onclick = dropTile;
 }
 
@@ -41,14 +42,14 @@ function dragTile(e) {
   const draggingTile = document.getElementById(draggingTileId);
 
   // calculate the new cursor position:
-  pos1 = pos3 - e.clientX;
-  pos2 = pos4 - e.clientY;
-  pos3 = e.clientX;
-  pos4 = e.clientY;
+  xEnd = xStart - e.clientX;
+  yEnd = yStart - e.clientY;
+  xStart = e.clientX;
+  yStart = e.clientY;
 
   // set the element's new position:
-  let top = draggingTile.offsetTop - pos2;
-  let left = draggingTile.offsetLeft - pos1;
+  let top = draggingTile.offsetTop - yEnd;
+  let left = draggingTile.offsetLeft - xEnd;
   draggingTile.style.top = top + "px";
   draggingTile.style.left = left + "px";
 }
@@ -95,7 +96,7 @@ function dropTile() {
 }
 
 function handleTileClick(e) {
-  (pos1 = 0), (pos2 = 0), (pos3 = 0), (pos4 = 0);
+  (xEnd = 0), (yEnd = 0), (xStart = 0), (yStart = 0);
   const draggingTile = e.target;
   draggingTileId = draggingTile.id;
 
@@ -122,7 +123,7 @@ function moveAllOtherTilesBehind(draggingTile) {
   }
 }
 
-function keyPress(e) {
+function handleKeyPress(e) {
   const draggingTile = document.getElementById(draggingTileId);
   const pressedKeyCode = e.keyCode;
 
