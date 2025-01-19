@@ -82,14 +82,8 @@ function dropTile() {
     ) {
       const topDiff = boundingRect.y - coordinate.y + window.scrollY;
       const leftDiff = boundingRect.x - coordinate.x + window.scrollX;
-      const currTop = parseInt(
-        draggingTile.style.top.substr(0, draggingTile.style.top.length - 2)
-      );
-      const currLeft = parseInt(
-        draggingTile.style.left.substr(0, draggingTile.style.left.length - 2)
-      );
-      draggingTile.style.top = `${currTop - topDiff}px`;
-      draggingTile.style.left = `${currLeft - leftDiff}px`;
+      draggingTile.style.top = `${draggingTile.offsetTop - topDiff}px`;
+      draggingTile.style.left = `${draggingTile.offsetLeft - leftDiff}px`;
       return true;
     }
   });
