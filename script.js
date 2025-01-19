@@ -1,4 +1,5 @@
 $(document).on("click", ".tile", clickMouse);
+$(document).on("click", "#reset-button", resetTiles);
 
 let pos1 = 0,
   pos2 = 0,
@@ -110,13 +111,13 @@ function clickMouse(e) {
 function keyPress(e) {
   elem = document.getElementById(movingDiv);
   if (e.keyCode === 82) {
-    // R key pressed, rotate block
+    // R key pressed, rotate tile
     elem.setAttribute(
       "rotateDeg",
       (parseInt(elem.getAttribute("rotateDeg")) + 90) % 360
     );
   } else if (e.keyCode === 70) {
-    // F key pressed, flip block
+    // F key pressed, flip tile
     elem.setAttribute("scale", parseInt(elem.getAttribute("scale")) * -1);
   }
 
@@ -153,4 +154,13 @@ function nearCoordinate(x, y, top, left) {
     isLeftNearBoundingUpper &&
     isLeftNearBoundingLower
   );
+}
+
+function resetTiles() {
+  const tiles = document.getElementsByClassName("tile");
+
+  for (let tile of tiles) {
+    tile.style.removeProperty("top");
+    tile.style.removeProperty("left");
+  }
 }

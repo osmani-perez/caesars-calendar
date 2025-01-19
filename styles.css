@@ -15,6 +15,20 @@ header {
   width: 500px;
 }
 
+#controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button {
+  height: 40px;
+  font-size: large;
+  border-radius: 8px;
+  background-color: #997950;
+  cursor: pointer;
+}
+
 #game-area {
   display: flex;
   justify-content: space-evenly;
