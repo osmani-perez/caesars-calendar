@@ -1,10 +1,14 @@
-$(document).on("click", ".tile", handleTileClick);
+$(document).on("click", ".tile-parts", handleTileClick);
+$(document).on("click", "#reset-button", resetTiles);
+$(window).on("load", initializeFilledBoardSpaces);
 
 let xEnd = 0;
 let yEnd = 0;
 let xStart = 0;
 let yStart = 0;
 let draggingTileId = "";
+let filledBoardSpaces = new Array(44);
+let targetTiles = [];
 
 const R_KEY_CODE = 82;
 const F_KEY_CODE = 70;
@@ -84,6 +88,9 @@ function dropTile() {
       const leftDiff = boundingRect.x - coordinate.x + window.scrollX;
       draggingTile.style.top = `${draggingTile.offsetTop - topDiff}px`;
       draggingTile.style.left = `${draggingTile.offsetLeft - leftDiff}px`;
+
+      handleBoardValidation();
+
       return true;
     }
   });
@@ -91,7 +98,7 @@ function dropTile() {
 
 function handleTileClick(e) {
   (xEnd = 0), (yEnd = 0), (xStart = 0), (yStart = 0);
-  const draggingTile = e.target;
+  const draggingTile = e.target.parentElement;
   draggingTileId = draggingTile.id;
 
   pickUpTile(e);
@@ -134,7 +141,7 @@ function handleKeyPress(e) {
   }
 
   const scaleDirection = [90, 270].includes(
-    draggingTile.getAttribute("rotateDeg")
+    parseInt(draggingTile.getAttribute("rotateDeg"))
   )
     ? "Y"
     : "X";
@@ -167,5 +174,104 @@ function isNearCoordinate(x, y, top, left) {
     isTopAboveBoundingLower &&
     isLeftBelowBoundingUpper &&
     isLeftAboveBoundingLower
+  );
+}
+
+function handleBoardValidation() {
+  let tileSpaces = document.querySelectorAll("[id^=tile-space]");
+  let tiles = Array.from(document.querySelectorAll(".tile-parts"));
+  tileSpaces.forEach((space, index) => {
+    filledBoardSpaces[index] = tiles.some((tile) => {
+      if (isElementInFront(tile, space)) {
+        return true;
+      }
+    });
+  });
+
+  console.log(filledBoardSpaces);
+
+  if (isWinConditionMet()) {
+    const winElement = document.createElement("h1");
+    winElement.id = "win-element";
+    winElement.textContent = "You Win!";
+    document.getElementById("tile-area").appendChild(winElement);
+  }
+}
+
+function isWinConditionMet() {
+  let falseCount = 0;
+
+  !filledBoardSpaces.some((space, index) => {
+    if (!space) {
+      if (!targetTiles.includes(index)) {
+        return true;
+      }
+      falseCount++;
+    }
+  });
+
+  return falseCount === 3;
+}
+
+function initializeFilledBoardSpaces() {
+  let tileSpaces = document.querySelectorAll("[id^=tile-space]");
+  filledBoardSpaces.fill(false);
+
+  for (let i = 0; i < tileSpaces.length; i++) {
+    if (tileSpaces[i].className === "tile-space glow") {
+      targetTiles.push(i);
+    }
+  }
+
+  return true;
+}
+
+function resetTiles() {
+  const tiles = document.getElementsByClassName("tile");
+
+  for (let tile of tiles) {
+    let initialTranslation = tile.getAttribute("initialTranslation");
+    tile.style.transform = `translate(${initialTranslation})`;
+    tile.style.removeProperty("top");
+    tile.style.removeProperty("left");
+  }
+
+  filledBoardSpaces.fill(false);
+
+  if (document.getElementById("win-element")) {
+    document.getElementById("win-element").remove();
+  }
+}
+
+function isElementInFront(element1, element2) {
+  const rect1 = element1.getBoundingClientRect();
+  const rect2 = element2.getBoundingClientRect();
+
+  // Check if element1 overlaps element2
+  const isOverlapping = !(
+    rect1.right < rect2.left + 1 ||
+    rect1.left > rect2.right - 1 ||
+    rect1.bottom < rect2.top + 1 ||
+    rect1.top > rect2.bottom - 1
+  );
+
+  if (!isOverlapping) {
+    return false; // No overlap, element1 cannot be in front
+  }
+
+  // Check z-index
+  const zIndex1 = parseInt(getComputedStyle(element1).zIndex, 10) || 0;
+  const zIndex2 = parseInt(getComputedStyle(element2).zIndex, 10) || 0;
+
+  if (zIndex1 > zIndex2) {
+    return true;
+  } else if (zIndex1 < zIndex2) {
+    return false;
+  }
+
+  // If z-index is equal, check document order
+  return (
+    document.body.compareDocumentPosition(element1) &
+    Node.DOCUMENT_POSITION_FOLLOWING
   );
 }

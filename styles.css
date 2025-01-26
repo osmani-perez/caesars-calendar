@@ -41,6 +41,9 @@ header {
   z-index: 9;
   box-sizing: border-box;
   cursor: grab;
+}
+
+.tile-parts {
   background-image: url("wood-texture.jpg");
 }
 
@@ -76,4 +79,18 @@ header {
 .glow-dim {
   color: #fff;
   text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
+}
+
+#win-element {
+  font-size: 50px;
+  background-image: linear-gradient(to right, red, orange, yellow, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-animation 200s linear infinite;
+}
+
+@keyframes rainbow-animation {
+  to {
+    background-position: 4500vh;
+  }
 }
