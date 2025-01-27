@@ -40,11 +40,13 @@ header {
   position: absolute;
   z-index: 9;
   box-sizing: border-box;
-  cursor: grab;
+  pointer-events: none;
 }
 
 .tile-parts {
   background-image: url("wood-texture.jpg");
+  cursor: grab;
+  pointer-events: auto;
 }
 
 #board {
