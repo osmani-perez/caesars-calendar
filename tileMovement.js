@@ -65,6 +65,9 @@ function dropTile() {
   document.onclick = null;
   document.onkeydown = null;
   draggingTile.style.cursor = "grab";
+  for (const child of draggingTile.children) {
+    child.style.removeProperty("box-shadow");
+  }
 
   const initialTranslation = draggingTile.getAttribute("initialTranslation");
 
@@ -105,6 +108,9 @@ function handleTileClick(e) {
   moveAllOtherTilesBehind(draggingTile);
   draggingTile.style.cursor = "grabbing";
   draggingTile.style.zIndex = 10;
+  for (const child of draggingTile.children) {
+    child.style.boxShadow = "black 10px 10px 10px";
+  }
 
   if (!draggingTile.hasAttribute("rotateDeg")) {
     draggingTile.setAttribute("rotateDeg", 0);
