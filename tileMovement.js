@@ -66,9 +66,11 @@ function dropTile() {
   document.onclick = null;
   document.onkeydown = null;
   toggleTileClickEventListeners(false);
+
+  $(".tile-parts").css("cursor", "grab");
+  $("body").css("cursor", "");
   for (const child of draggingTile.children) {
     child.style.removeProperty("box-shadow");
-    child.style.cursor = "grab";
   }
 
   const initialTranslation = draggingTile.getAttribute("initialTranslation");
@@ -108,10 +110,12 @@ function handleTileClick(e) {
 
   pickUpTile(e);
   moveAllOtherTilesBehind(draggingTile);
+
   draggingTile.style.zIndex = 10;
+  $(".tile-parts").css("cursor", "grabbing");
+  $("body").css("cursor", "grabbing");
   for (const child of draggingTile.children) {
     child.style.boxShadow = "black 10px 10px 10px";
-    child.style.cursor = "grabbing";
   }
 
   if (!draggingTile.hasAttribute("rotateDeg")) {
