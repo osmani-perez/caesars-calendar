@@ -1,8 +1,12 @@
 body {
-  margin: 0 50px;
+  margin: 0 20px;
   background-color: grey;
   font-family: "Courier New";
   font-weight: bold;
+}
+
+h1 {
+  margin: 10px 0 0 0;
 }
 
 header {
@@ -40,8 +44,13 @@ header {
   position: absolute;
   z-index: 9;
   box-sizing: border-box;
-  cursor: grab;
+  pointer-events: none;
+}
+
+.tile-parts {
   background-image: url("wood-texture.jpg");
+  cursor: grab;
+  pointer-events: auto;
 }
 
 #board {
@@ -76,4 +85,18 @@ header {
 .glow-dim {
   color: #fff;
   text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
+}
+
+#win-element {
+  font-size: 50px;
+  background-image: linear-gradient(to right, red, orange, yellow, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-animation 200s linear infinite;
+}
+
+@keyframes rainbow-animation {
+  to {
+    background-position: 4500vh;
+  }
 }

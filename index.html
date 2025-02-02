@@ -20,6 +20,8 @@
     <div id="controls" class="header-elements">
       <div>
         <h1>Controls</h1>
+        <span>Mouse: Drag and Drop Tiles</span>
+        <br />
         <span>R: Rotate Tile</span>
         <br />
         <span>F: Flip Tile</span>
@@ -125,179 +127,213 @@
         class="tile"
         initialTranslation="0px, 0px"
         style="width: 320px; height: 80px"
-      ></div>
+      >
+        <div class="tile-parts" style="width: 320px; height: 80px"></div>
+      </div>
       <div
         id="tile-l-2"
         class="tile"
         initialTranslation="0px, 90px"
-        style="
-          transform: translate(0px, 90px);
-          width: 320px;
-          height: 160px;
-          clip-path: polygon(
-            0% 0%,
-            0% 100%,
-            100% 100%,
-            100% 50%,
-            25% 50%,
-            25% 0%
-          );
-        "
-      ></div>
+        style="transform: translate(0px, 90px); width: 320px; height: 160px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 80px;
+            height: 80px;
+            background-position: left 0 top 80px;
+          "
+        ></div>
+        <div class="tile-parts" style="width: 320px; height: 80px"></div>
+      </div>
       <div
         id="tile-l-3"
         class="tile"
         initialTranslation="0px, 270px"
-        style="
-          transform: translate(0px, 270px);
-          width: 240px;
-          height: 160px;
-          clip-path: polygon(
-            0% 0%,
-            0% 100%,
-            100% 100%,
-            100% 50%,
-            33.3% 50%,
-            33.3% 0%
-          );
-        "
-      ></div>
+        style="transform: translate(0px, 270px); width: 240px; height: 160px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 80px;
+            height: 80px;
+            background-position: left 0 top 80px;
+          "
+        ></div>
+        <div class="tile-parts" style="width: 240px; height: 80px"></div>
+      </div>
       <div
         id="tile-l-4"
         class="tile"
         initialTranslation="330px, 10px"
-        style="
-          transform: translate(330px, 10px);
-          width: 240px;
-          height: 240px;
-          clip-path: polygon(
-            0% 0%,
-            0% 100%,
-            100% 100%,
-            100% 66.6%,
-            33.3% 66.6%,
-            33.3% 0%
-          );
-        "
-      ></div>
+        style="transform: translate(330px, 10px); width: 240px; height: 240px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 80px;
+            height: 80px;
+            background-position: left 0 top 160px;
+          "
+        ></div>
+        <div
+          class="tile-parts"
+          style="
+            width: 80px;
+            height: 80px;
+            background-position: left 0 top 80px;
+          "
+        ></div>
+        <div class="tile-parts" style="width: 240px; height: 80px"></div>
+      </div>
       <div
         id="tile-zig-1"
         class="tile"
-        initialTranslation="430px, 0px"
-        style="
-          transform: translate(430px, 0px);
-          width: 240px;
-          height: 160px;
-          clip-path: polygon(
-            0% 50%,
-            0% 100%,
-            66.6% 100%,
-            66.6% 50%,
-            100% 50%,
-            100% 0%,
-            33.3% 0%,
-            33.3% 50%
-          );
-        "
-      ></div>
+        initialTranslation="420px, 0px"
+        style="transform: translate(420px, 0px); width: 240px; height: 160px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 160px;
+            height: 80px;
+            left: 80px;
+            position: relative;
+            background-position: left -80px top 80px;
+          "
+        ></div>
+        <div
+          class="tile-parts"
+          style="width: 160px; height: 80px; left: 0; position: relative"
+        ></div>
+      </div>
       <div
         id="tile-zig-2"
         class="tile"
         initialTranslation="340px, 270px"
-        style="
-          transform: translate(340px, 270px);
-          width: 320px;
-          height: 160px;
-          clip-path: polygon(
-            0% 50%,
-            0% 100%,
-            50% 100%,
-            50% 50%,
-            100% 50%,
-            100% 0%,
-            25% 0%,
-            25% 50%
-          );
-        "
-      ></div>
+        style="transform: translate(340px, 270px); width: 320px; height: 160px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 240px;
+            height: 80px;
+            left: 80px;
+            position: relative;
+            background-position: left -80px top 80px;
+          "
+        ></div>
+        <div
+          class="tile-parts"
+          style="width: 160px; height: 80px; left: 0; position: relative"
+        ></div>
+      </div>
       <div
         id="tile-zig-3"
         class="tile"
         initialTranslation="0px, 440px"
-        style="
-          transform: translate(0px, 440px);
-          width: 240px;
-          height: 240px;
-          clip-path: polygon(
-            0% 66.6%,
-            0% 100%,
-            66.6% 100%,
-            66.6% 33.3%,
-            100% 33.3%,
-            100% 0%,
-            33.3% 0%,
-            33.3% 66.6%
-          );
-        "
-      ></div>
+        style="transform: translate(0px, 440px); width: 240px; height: 240px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 160px;
+            height: 80px;
+            left: 80px;
+            position: relative;
+            background-position: left -80px top 160px;
+          "
+        ></div>
+        <div
+          class="tile-parts"
+          style="
+            width: 80px;
+            height: 80px;
+            left: 80px;
+            position: relative;
+            background-position: left -80px top 80px;
+          "
+        ></div>
+        <div
+          class="tile-parts"
+          style="width: 160px; height: 80px; left: 0; position: relative"
+        ></div>
+      </div>
       <div
         id="tile-t"
         class="tile"
         initialTranslation="170px, 260px"
-        style="
-          transform: translate(170px, 260px);
-          width: 240px;
-          height: 240px;
-          clip-path: polygon(
-            0% 0%,
-            0% 33.3%,
-            33.3% 33.3%,
-            33.3% 100%,
-            66.6% 100%,
-            66.6% 33.3%,
-            100% 33.3%,
-            100% 0%
-          );
-        "
-      ></div>
+        style="transform: translate(170px, 260px); width: 240px; height: 240px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 240px;
+            height: 80px;
+            background-position: left 0 top 160px;
+          "
+        ></div>
+        <div
+          class="tile-parts"
+          style="
+            width: 80px;
+            height: 80px;
+            left: 80px;
+            position: relative;
+            background-position: left -80px top 80px;
+          "
+        ></div>
+        <div
+          class="tile-parts"
+          style="
+            width: 80px;
+            height: 80px;
+            left: 80px;
+            position: relative;
+            background-position: left -80px top 0;
+          "
+        ></div>
+      </div>
       <div
         id="tile-u"
         class="tile"
-        initialTranslation="210px, 530px"
-        style="
-          transform: translate(210px, 530px);
-          width: 240px;
-          height: 160px;
-          clip-path: polygon(
-            0% 0%,
-            0% 100%,
-            100% 100%,
-            100% 0%,
-            66.6% 0%,
-            66.6% 50%,
-            33.3% 50%,
-            33.3% 0%
-          );
-        "
-      ></div>
+        initialTranslation="500px, 440px"
+        style="transform: translate(500px, 440px); width: 160px; height: 240px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 160px;
+            height: 80px;
+            background-position: left 0 top 160px;
+          "
+        ></div>
+        <div
+          class="tile-parts"
+          style="
+            width: 80px;
+            height: 80px;
+            background-position: left 0 top 80px;
+          "
+        ></div>
+        <div class="tile-parts" style="width: 160px; height: 80px"></div>
+      </div>
       <div
         id="tile-hippo"
         class="tile"
-        initialTranslation="420px, 440px"
-        style="
-          transform: translate(420px, 440px);
-          width: 240px;
-          height: 160px;
-          clip-path: polygon(
-            0% 0%,
-            0% 50%,
-            33.3% 50%,
-            33.3% 100%,
-            100% 100%,
-            100% 0%
-          );
-        "
-      ></div>
+        initialTranslation="250px, 510px"
+        style="transform: translate(250px, 510px); width: 240px; height: 160px"
+      >
+        <div
+          class="tile-parts"
+          style="
+            width: 240px;
+            height: 80px;
+            background-position: left 0 top 80px;
+          "
+        ></div>
+        <div class="tile-parts" style="width: 160px; height: 80px"></div>
+      </div>
     </div>
   </div>
 </body>
