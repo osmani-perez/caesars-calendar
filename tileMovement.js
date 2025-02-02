@@ -38,6 +38,7 @@ function pickUpTile(e) {
   document.onmousemove = dragTile;
   document.onkeydown = handleKeyPress;
   document.onclick = dropTile;
+  toggleTileClickEventListeners(true);
 }
 
 function dragTile(e) {
@@ -64,6 +65,7 @@ function dropTile() {
   document.onmousemove = null;
   document.onclick = null;
   document.onkeydown = null;
+  toggleTileClickEventListeners(false);
   for (const child of draggingTile.children) {
     child.style.removeProperty("box-shadow");
     child.style.cursor = "grab";
@@ -194,8 +196,6 @@ function handleBoardValidation() {
     });
   });
 
-  console.log(filledBoardSpaces);
-
   if (isWinConditionMet()) {
     const winElement = document.createElement("h1");
     winElement.id = "win-element";
@@ -280,4 +280,12 @@ function isElementInFront(element1, element2) {
     document.body.compareDocumentPosition(element1) &
     Node.DOCUMENT_POSITION_FOLLOWING
   );
+}
+
+function toggleTileClickEventListeners(disable) {
+  if (disable) {
+    $(document).off("click", ".tile-parts", handleTileClick);
+  } else {
+    $(document).on("click", ".tile-parts", handleTileClick);
+  }
 }
