@@ -244,6 +244,7 @@ function resetTiles() {
     tile.style.transform = `translate(${initialTranslation})`;
     tile.style.removeProperty("top");
     tile.style.removeProperty("left");
+    tile.setAttribute("rotateDeg", 0);
   }
 
   filledBoardSpaces.fill(false);
